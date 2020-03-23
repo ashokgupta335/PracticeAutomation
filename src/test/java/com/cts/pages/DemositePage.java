@@ -1,7 +1,6 @@
 package com.cts.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
@@ -26,12 +25,10 @@ public class DemositePage {
 	private static By dayLoc = By.id("daybox");
 	private static By passLoc = By.id("firstpassword");
 	private static By confrmPassLoc = By.id("secondpassword");
-	private static By submitBttnLoc = By.id("submitbtn");
 	private static By refreshLoc = By.xpath("//button[text()='Refresh']");
 	private static By switchToLoc = By.linkText("SwitchTo");
 	private static By alertsLoc = By.linkText("Alerts");
 	private static By widgetsLoc = By.linkText("Widgets");
-	private static By datepickerLoc = By.linkText("Datepicker");
 	private static By autoCompleteLoc = By.linkText("AutoComplete");
 	private static By moreEleLoc = By.linkText("More");
 	private static By modalsLoc = By.linkText("Modals");
@@ -40,6 +37,7 @@ public class DemositePage {
 	private static By indiaLoc = By.xpath("//a[text()='India']");
 	private static By malaysiaLoc = By.xpath("//a[text()='Malaysia']");
 	private static By boxCountry_1Loc = By.xpath("//div[text()='India']");
+	private static By videoLoc = By.linkText("Video");
 	private static By vimeoLoc = By.xpath("//a[text()='Vimeo']");
 	private static By playVideoLoc = By.xpath("//div[@class='play-icon']");
 	private static By alertClickLoc = By.xpath("//button[contains(text(),'display an  alert box')]");
@@ -106,7 +104,7 @@ public class DemositePage {
 		Actions action = new Actions(driver);
 		action.moveToElement(driver.findElement(switchToLoc)).pause(2000).build().perform();
 		driver.findElement(alertsLoc).click();
-		action.click(driver.findElement(alertClickLoc));
+		action.moveToElement(driver.findElement(alertClickLoc)).pause(2000).click().build().perform();
 	}
 
 	public static void clickOnAutoComplete(WebDriver driver, String country_1, String country_2) {
@@ -142,9 +140,8 @@ public class DemositePage {
 	public static void clickOnVimeo(WebDriver driver) {
 
 		Actions action = new Actions(driver);
+		action.moveToElement(driver.findElement(videoLoc)).pause(2000).moveToElement(driver.findElement(vimeoLoc)).pause(2000).click().build().perform();
 
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click();", driver.findElement(vimeoLoc));
 		driver.switchTo().frame("foo");
 		action.moveToElement(driver.findElement(playVideoLoc)).click().pause(5000).build().perform();
 
